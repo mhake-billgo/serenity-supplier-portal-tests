@@ -21,7 +21,7 @@ import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SerenityRunner.class)
-public class ViewFAQStory {
+public class SearchFAQStory {
 
   Actor potentialSupplier = Actor.named("Interested Supplier");
 
@@ -42,8 +42,8 @@ public class ViewFAQStory {
 
     when(potentialSupplier).attemptsTo(Scroll.to(LandingPage.FAQ_BUTTON));
     and(potentialSupplier).attemptsTo(ClickFAQButton.click());
+    and(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
 
-    then(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
   }
 
 }

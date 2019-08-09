@@ -1,6 +1,6 @@
 package com.billgo.uncheck.tasks;
 
-import com.billgo.uncheck.ui.VisitFAQButton;
+import com.billgo.uncheck.ui.LandingPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
@@ -10,9 +10,9 @@ import static net.serenitybdd.screenplay.Tasks.instrumented;
 
 public class ClickFAQButton implements Task {
 
-  @Step("CLick FAQ Button")
+  @Step("Click FAQ Button")
   public <T extends Actor> void performAs(T actor) {
-    actor.attemptsTo(Click.on(VisitFAQButton.FAQ_BUTTON));
+    actor.attemptsTo(Click.on(LandingPage.FAQ_BUTTON));
   }
 
   public static ClickFAQButton click() {
