@@ -15,7 +15,7 @@ public class SearchFAQs implements Task {
     this.searchTerm = searchTerm;
   }
 
-  @Step("Search for #searchTerm")
+  @Step("Search FAQs for #searchTerm")
   public <T extends Actor> void performAs(T actor) {
     actor.attemptsTo(
             Enter.theValue(searchTerm)

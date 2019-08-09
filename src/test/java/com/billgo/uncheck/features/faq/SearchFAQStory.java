@@ -1,7 +1,7 @@
 package com.billgo.uncheck.features.faq;
 
+import com.billgo.uncheck.questions.FAQResults;
 import com.billgo.uncheck.tasks.ClickFAQButton;
-import com.billgo.uncheck.tasks.Search;
 import com.billgo.uncheck.tasks.SearchFAQs;
 import com.billgo.uncheck.tasks.ViewSupplierPortal;
 import com.billgo.uncheck.ui.LandingPage;
@@ -20,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import static net.serenitybdd.screenplay.EventualConsequence.eventually;
 import static net.serenitybdd.screenplay.GivenWhenThen.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SerenityRunner.class)
@@ -42,13 +43,13 @@ public class SearchFAQStory {
   }
 
   @Test
-  public void view_faqs() {
+  public void search_faqs() {
     givenThat(potentialSupplier).wasAbleTo(viewSupplierPortal);
     when(potentialSupplier).attemptsTo(Scroll.to(LandingPage.FAQ_BUTTON));
     and(potentialSupplier).attemptsTo(clickFAQButton);
-    and(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
     when(potentialSupplier).attemptsTo(SearchFAQs.forCharacters("opt-out"));
-    then(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
+    then(potentialSupplier).should(eventually(seeThat("FAQ Titles", FAQResults.titles(),
+            containsInAnyOrder("Can I opt-out?"))));
   }
 
 }
