@@ -1,12 +1,10 @@
 package com.billgo.uncheck.tasks;
 
+import net.serenitybdd.core.steps.Instrumented;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.Open;
 import net.thucydides.core.annotations.Step;
-import org.openqa.selenium.Keys;
-import static net.serenitybdd.screenplay.Tasks.instrumented;
 import static org.openqa.selenium.Keys.ENTER;
 
 import com.billgo.uncheck.ui.SearchBox;
@@ -29,7 +27,7 @@ public class Search implements Task {
     }
 
     public static Search forTheTerm(String searchTerm) {
-        return instrumented(Search.class, searchTerm);
+        return Instrumented.instanceOf(Search.class).withProperties(searchTerm);
     }
 
 }

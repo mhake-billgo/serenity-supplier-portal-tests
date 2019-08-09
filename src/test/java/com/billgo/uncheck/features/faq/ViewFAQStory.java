@@ -31,17 +31,19 @@ public class ViewFAQStory {
   @Steps
   ViewSupplierPortal viewSupplierPortal;
 
+  @Steps
+  ClickFAQButton clickFAQButton;
+
   @Before
   public void canBrowseTheWeb() {
-    potentialSupplier.can(BrowseTheWeb.with(browser));
+    givenThat(potentialSupplier).can(BrowseTheWeb.with(browser));
   }
 
   @Test
   public void view_faqs() {
     givenThat(potentialSupplier).wasAbleTo(viewSupplierPortal);
-
-    when(potentialSupplier).attemptsTo(Scroll.to(LandingPage.FAQ_BUTTON));
-    and(potentialSupplier).attemptsTo(ClickFAQButton.click());
+    andThat(potentialSupplier).wasAbleTo(Scroll.to(LandingPage.FAQ_BUTTON));
+    when(potentialSupplier).attemptsTo(clickFAQButton);
 
     then(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
   }

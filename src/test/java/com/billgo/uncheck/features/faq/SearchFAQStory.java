@@ -1,6 +1,8 @@
 package com.billgo.uncheck.features.faq;
 
 import com.billgo.uncheck.tasks.ClickFAQButton;
+import com.billgo.uncheck.tasks.Search;
+import com.billgo.uncheck.tasks.SearchFAQs;
 import com.billgo.uncheck.tasks.ViewSupplierPortal;
 import com.billgo.uncheck.ui.LandingPage;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -31,6 +33,9 @@ public class SearchFAQStory {
   @Steps
   ViewSupplierPortal viewSupplierPortal;
 
+  @Steps
+  ClickFAQButton clickFAQButton;
+
   @Before
   public void canBrowseTheWeb() {
     potentialSupplier.can(BrowseTheWeb.with(browser));
@@ -39,11 +44,11 @@ public class SearchFAQStory {
   @Test
   public void view_faqs() {
     givenThat(potentialSupplier).wasAbleTo(viewSupplierPortal);
-
     when(potentialSupplier).attemptsTo(Scroll.to(LandingPage.FAQ_BUTTON));
-    and(potentialSupplier).attemptsTo(ClickFAQButton.click());
+    and(potentialSupplier).attemptsTo(clickFAQButton);
     and(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
-
+    when(potentialSupplier).attemptsTo(SearchFAQs.forCharacters("opt-out"));
+    then(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
   }
 
 }
