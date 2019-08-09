@@ -9,7 +9,6 @@ import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Scroll;
-import net.serenitybdd.screenplay.questions.page.TheWebPage;
 import net.thucydides.core.annotations.Managed;
 import net.thucydides.core.annotations.Steps;
 import org.junit.Before;
@@ -21,7 +20,6 @@ import static net.serenitybdd.screenplay.EventualConsequence.eventually;
 import static net.serenitybdd.screenplay.GivenWhenThen.*;
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SerenityRunner.class)
 public class SearchFAQStory {
@@ -43,7 +41,7 @@ public class SearchFAQStory {
   }
 
   @Test
-  public void search_faqs() {
+  public void searchFAQ() {
     givenThat(potentialSupplier).wasAbleTo(viewSupplierPortal);
     when(potentialSupplier).attemptsTo(Scroll.to(LandingPage.FAQ_BUTTON));
     and(potentialSupplier).attemptsTo(clickFAQButton);
