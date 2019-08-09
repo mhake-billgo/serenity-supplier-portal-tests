@@ -45,7 +45,7 @@ public class ViewFAQStory {
     when(potentialSupplier).attemptsTo(Scroll.to(VisitFAQButton.FAQ_BUTTON));
     and(potentialSupplier).attemptsTo(ClickFAQButton.click());
 
-    then(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("FAQ"))));
+    then(potentialSupplier).should(eventually(seeThat(TheWebPage.title(), containsString("BillGO"))));
   }
 
 }
